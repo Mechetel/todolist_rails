@@ -5,8 +5,8 @@ class CreateTasks < ActiveRecord::Migration[5.1]
       t.string :name
       t.boolean :done, :default => false
       t.datetime :deadline
-      t.order :integer
-      
+      t.integer :order
+
       t.timestamps
     end
   end
