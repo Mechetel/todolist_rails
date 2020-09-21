@@ -5,8 +5,7 @@ Rails.application.routes.draw do
 
   get '/projects/:id' => 'projects#destroy'
   get '/tasks/:id' => 'tasks#destroy'
-#  get '/users/sign_out' => 'devise/sessions#destroy'
-#  match '/users/sign_out', via: [:get, :post]
+
   resources :projects
   resources :tasks
 
