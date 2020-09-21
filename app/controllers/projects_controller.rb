@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-
   before_action :set_project, except: [:create]
 
   def create
