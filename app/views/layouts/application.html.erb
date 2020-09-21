@@ -9,8 +9,6 @@
   </head>
 
   <body>
-    <%= render partial: "layouts/header" %>
-
     <div class='container todo-container'>
 			<% flash.each do |name, msg| %>
 				<% if msg.is_a?(String) %>
@@ -22,7 +20,5 @@
 			<% end %>
       <%= yield %>
     </div>
-
-    <%= render partial: "layouts/footer" %>
   </body>
 </html>

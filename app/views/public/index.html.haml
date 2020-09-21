@@ -1,0 +1,63 @@
+.row.text-row
+  .col-xs-3
+  .col-xs-6
+    .text-center.upcase
+      %h1 Simple todo list
+      %h3 From rubygarage
+  .col-xs-3.text-right
+    %span Welcome
+    %span=link_to current_user.full_name, profile_path(current_user.username) , class: "dropdown-item"
+    %span=link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-link'
+
+.row.text-row
+  - @projects.each do |project|
+    .col-xs-12.text-line
+      .row.project-title
+        .col-xs-10
+          .col-xs-1
+            %span.glyphicon.glyphicon-calendar.p-icon.icon-grey
+          .col-xs-9
+            = form_for project, authenticity_token: true do |f|
+              = f.text_field :name, class: 'project-name-inp', id: "project-inp-#{project.id}", onblur: "$(this).closest('form').trigger('submit')"
+        .col-xs-2.text-right
+          %label.btn.btn-link{:for => "project-inp-#{project.id}"}
+            %span.glyphicon.glyphicon-pencil
+          = link_to project, method: :delete, class: 'btn btn-link' do
+            %span.glyphicon.glyphicon-trash
+    .new-task-form.clearfix
+      .col-xs-12
+        = form_for project.tasks.new do |f|
+          = f.hidden_field :project_id
+          .input-group
+            = f.text_field :name, class: 'form-control', placeholder: 'Start typing to create a task...'
+            .input-group-btn
+              %button.btn.btn-success.task-create-button(type="submit")
+                %span Create Task
+    %ul.tasks-group.clearfix(data-project="#{project.id}")
+      - project.tasks.order(order: :asc).each do |task|
+        - if task.persisted?
+          %li(data-task="#{task.id}" class="col-xs-12 tasks-group-item #{task.done ? 'task-done' : ''}")
+            = form_for task, authenticity_token: true do |f|
+              .task-tbl
+                .task-tbl-cell.b-right.task-tbl-cell-wight-40
+                  = f.check_box :done, onchange: "$(this).closest('form').trigger('submit')"
+                %div.task-tbl-dualline
+                .task-tbl-cell.b-left.task-tbl-cell-wight-100
+                  = f.text_field :name, class: 'task-name-inp', id: "task-inp-#{task.id}", onblur: "$(this).closest('form').trigger('submit')"
+                .task-tbl-cell.text-right.deadline-size
+                  = f.date_field :deadline, id: "task-inp-#{task.id}", onblur: "$(this).closest('form').trigger('submit')"
+                .task-tbl-cell.text-right.b-left.task-tbl-cell-wight-160
+                  %span.btn.btn-link.task-item-handle
+                    %span.glyphicon.glyphicon-move
+                  %label.btn.btn-link{:for => "task-inp-#{task.id}"}
+                    %span.glyphicon.glyphicon-pencil
+                  = link_to task, method: :delete, data: { confirm: "Are You Shure?" }, class: 'btn btn-link' do
+                    %span.glyphicon.glyphicon-trash
+.row.text-row
+  .col-xs-6.col-xs-offset-3
+    = form_for current_user.projects.new do |f|
+      .input-group
+        = f.text_field :name, class: 'form-control input-lg', placeholder: 'Project name...'
+        .input-group-btn
+          %button.btn.btn-primary.btn-lg{:type => "submit"}
+            %span Create Project
