@@ -13,3 +13,11 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+//= require jquery3
+
+//= require jquery
+//= require bootstrap/alert
+
+//= require jquery-ui/core
+//= require jquery-ui/widgets/sortable

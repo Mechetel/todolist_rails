@@ -22,6 +22,8 @@ gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
 gem 'haml', '~> 5.0', '>= 5.0.4'
 gem 'haml-rails', '~> 1.0'
 gem 'rubocop', '~> 0.52.1'
+gem 'bootstrap', '~> 4.0.0'
+gem 'bootsnap', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

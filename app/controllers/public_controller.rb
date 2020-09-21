@@ -1,5 +1,6 @@
 class PublicController < ApplicationController
   def index
+    @projects = current_user.projects.all
   end
 
   def profile
