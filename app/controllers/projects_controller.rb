@@ -3,8 +3,8 @@ class ProjectsController < ApplicationController
   before_action :set_project, except: [:create]
 
   def create
-    @project = current_user.projects.new project_params
-    if @project.save
+    project = current_user.projects.new project_params
+    if project.save
       flash[:success] = 'Project has been created!'
     else
       flash[:error] = 'Project is not created!'
@@ -22,8 +22,8 @@ class ProjectsController < ApplicationController
 	end
 
 	def update
-		@project = current_user.projects.find(params[:id])
-		if @project.update project_params
+		project = current_user.projects.find(params[:id])
+		if project.update project_params
       flash[:success] = 'Project has been updated!'
 		else
       flash[:success] = 'Project is not updated!'
