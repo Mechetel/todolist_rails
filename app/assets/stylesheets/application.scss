@@ -25,7 +25,7 @@ html, body {
 }
 
 body {
-  @include gradient-vertical(#d4cec3, #b8620b);
+  background: linear-gradient(to bottom, #d3cfa6 0%,#bac0ad 40%,#d29f16 55%,#ba680e 100%) repeat-x 0 0;
 }
 
 .upcase {
