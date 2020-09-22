@@ -7,7 +7,7 @@
   .col-xs-3.text-right
     %span Welcome
     %span=link_to current_user.full_name, profile_path(current_user.username) , class: "dropdown-item"
-    %span=link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-link'
+    %span=link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-primary'
 
 .row.text-row
   - @projects.each do |project|
