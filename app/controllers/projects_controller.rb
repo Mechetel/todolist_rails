@@ -7,15 +7,15 @@ class ProjectsController < ApplicationController
     redirect_to :root
   end
 
-	def destroy
-		@project.destroy
+  def destroy
+    @project.destroy
     redirect_to :root
-	end
+  end
 
-	def update
-		@project.update project_params
-		redirect_to :root
-	end
+  def update
+    @project.update project_params
+    redirect_to :root
+  end
 
   def update_tasks_order
     params[:order].each.with_index do |task_id, index|
